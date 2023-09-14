@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>jQueryとHTML5</title>
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+<!-- <link href="https://google-code-prettify.googlecode.com/svn/loader/prettify.css" type="text/css" rel="stylesheet" /> -->
+<!-- <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?autorun=true"></script> -->
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<!-- <link href="./common/css/style.css" rel="stylesheet" type="text/css" media="screen,tv" /> -->
+
+<!-- <link rel="stylesheet" href="./offline/jquery.mobile-1.4.0.min.css" /> -->
+<!-- <script src="./offline/jquery-1.10.2.min.js"></script> -->
+<!-- <script src="./offline/jquery.mobile-1.4.0.min.js"></script> -->
+
+
+<script lang="javascript">
+<!--
+	$(document).on("pagecreate", function() {
+		$(".photopopup").on({
+			popupbeforeposition : function() {
+				var maxHeight = $(window).height() - 60 + "px";
+				$(".photopopup img").css("max-height", maxHeight);
+			}
+		});
+	});
+	$(function() {
+		// 		$
+		// 				.get(
+		// 						"./sample01.html",
+		// 						function(data) {
+		// 							data = data.replace(/&/g, '&amp;').replace(/</g,
+		// 									'&lt;').replace(/>/g, '&gt;');
+		// 							// Highlight the operative parts:
+		// 							data = data
+		// 									.replace(
+		// 											/&lt;script src[\s\S]*?&gt;&lt;\/script&gt;|&lt;!--\?[\s\S]*?--&gt;|&lt;pre\b[\s\S]*?&lt;\/pre&gt;/g,
+		// 											'<span class="operative">$&</span>');
+		// 							$('#sample01').html(data);
+		// 						}, "html");
+	});
+	-->
+</script>
+<style type="text/css">
+<!--
+li.L0, li.L1, li.L2, li.L3,
+li.L5, li.L6, li.L7, li.L8
+{ list-style-type: decimal !important }
+.custom-corners .ui-bar {
+	-webkit-border-top-left-radius: inherit;
+	border-top-left-radius: inherit;
+	-webkit-border-top-right-radius: inherit;
+	border-top-right-radius: inherit;
+}
+.custom-corners .ui-body {
+	border-top-width: 0;
+	-webkit-border-bottom-left-radius: inherit;
+	border-bottom-left-radius: inherit;
+	-webkit-border-bottom-right-radius: inherit;
+	border-bottom-right-radius: inherit;
+}
+-->
+</style>
+
+</head>
+<body">
+  <div data-role="page">
+    <div data-role="header" id="HEADER">
+      <img src="./common/num/num09.png" alt=" " width="50" height="45"
+        align="absmiddle" />コンテンツ(4) jQueryとHTML5
+    </div>
+    <div role="main" class="ui-content">
+
+      <div class="ui-corner-all custom-corners">
+        <div class="ui-bar ui-bar-a">
+          <h3>あらまし</h3>
+        </div>
+        <div class="ui-body ui-body-a">
+          <p>コンテンツに関して、今回は、HTML5やjQueryを使ったリッチなコンテンツについて扱う。
+          前回用いたjQuery Mobileも実はHTML5とjQueryを使ったJavaScriptライブラリであり、HTML5とjQueryは、現在のモバイル対応を含めたリッチなWebコンテンツの大きな2つの根源といってよいだろう。
+          また、Googleドライブ上のワープロや表計算に代表されるような、Webブラウザ上で動作するアプリケーションの基盤でもある。HTML5とjQuery、それらをも用いたライブラリに関して紹介するとともに、実際にこれらを用いた簡単なコンテンツの作成の実習を行う。</p>
+        </div>
+      </div>
+
+      <div data-role="collapsible" data-collapsed="false" data-theme="b">
+        <h3>解説</h3>
+
+        <div data-role="collapsible" data-collapsed="false">
+          <h4>HTML5</h4>
+          <p>
+            <a target="_blank" href="http://ja.wikipedia.org/wiki/HTML5">HTML5</a>は、HTML規格の大幅な更新であり、これまでブラウザ上で直接は扱えなかったグラフィックスや動画等が扱えるようになりWebコンテンツに大きな変革をもたらしたといえよう。
+             その影響は、そのうちJava appletやFlashがなくなるかもしれない勢いである。HTML5はHTML自体の規格なので、Java
+            appletやFlashのようなプラグインが必要ない。さらに、Java
+            appletの利用が減ってきつつあり、また、90%以上の普及率を誇っていたFlashさえも事情が変わってきた。
+            <a target="_blank" href="http://www.apple.com/hotnews/thoughts-on-flash/">
+             アップルの公式サイト上のジョブズによるFlashについての見解 (2010年4月)</a>にあるように、AppleはiOSでFlashの採用をやめた。経緯な詳細は、<a target="_blank"
+              href="http://jp.techcrunch.com/2012/07/02/20120630steve-jobs-war-against-flash/">
+              Tech Crunchによる一連の経緯の解説 Ryan Lawler「ジョブズの誇り：AppleがFlashとの戦いに勝つまで」(2010年4月)
+              </a>にある。
+            Flashの開発元のAdobeさえも
+            <a target="_blank"
+              href="http://www.adobe.com/jp/aboutadobe/pressroom/pressreleases/20120629_flashplayer_android.html">
+              同社のWebサイトでの発表(2012年6月)</a>で、Android 4.1以降でのFlash
+              Playerのサポートを中止するとしている。
+          </p>
+        </div>
+
+        <div data-role="collapsible" data-collapsed="false">
+          <h4>jQueryとそれを利用したJavaScriptライブラリ</h4>
+          <p>
+            <a target="_blank" href="http://ja.wikipedia.org/wiki/JQuery">jQuery</a>は、<a target="_blank" href="http://ja.wikipedia.org/wiki/Ajax">Ajax</a>、イベント処理、
+            動的なHTMLの書き換え等をサポートするJacaScriptライブラリである。
+            また、その機能を拡張する多くのJavaScriptライブラリ(jQueryプラグイン)が開発されており、Webアプリケーションのブラウザ(クライアント)側での処理能力を飛躍的に進展させるとともに、Webコンテンツに関しても今まではアプリケーションでしかできなかったような様々なリッチな機能を入れ込むことが可能になってきた。
+          </p>
+          <p>
+            jQueryのプラグインは、<a target="_blank" href="http://jquery.com">jQueryのホームページ</a>のトップのタブにあるように、内部で同時に開発されている
+            <a target="_blank" href="http://jqueryui.com/">jQuery UI</a>や
+            <a target="_blank" href="http://jquerymobile.com">jQuery Mobile</a>
+            以外にも、jQueryの公式サイトにあるプラグイン登録サイト
+            <a target="_blank" href="http://plugins.jquery.com/">The jQuery Plugin Registry</a>
+            に多数が登録されている(2014年5月時点で1,000以上登録あり)。
+            ここでキーワードで検索することができ、例えば、「<a target="_blank" href="http://plugins.jquery.com/?s=plot">グラフのプロット</a>」
+            等で検索することができる。
+            さらに、このサイトに登録されていないものでも、よく使われているものが多数ある。
+            次節の「実例」で、HTML5やjQueryを用いたライブラリをいくつか紹介する。
+          </p>
+        </div>
+
+        <div data-role="collapsible" data-collapsed="false">
+          <h4>HTML5やjQueryの他の重要な側面</h4>
+          <p>今回は、HTML5やjQueryのコンテンツへの活用としての側面に関して扱った。
+          しかし、今回扱っていない内容として、
+          </p>
+          <ul>
+          <li>HTML5の位置情報機能の<a target="_blank" href="http://www.htmq.com/geolocation/">
+          Geolocation API</a>を用いると、モバイルデバイス等の現在位置等を取得できる。</li>
+          <li>HTML5の動画再生機能の<a target="_blank" href="http://www.htmq.com/html5/004.shtml">http://www.htmq.com/html5/004.shtml</a>
+          を用いると、Webブラウザだけで動画の再生が可能になる。ただし、再生可能な動画形式が限られているので注意が必要である。</li>
+          <li>HTML5のカメラ制御機能の<a target="_blank" href="http://labs.opentone.co.jp/?p=4051">
+          Media Capture and StreamsやMedia Capture and Streams</a>を用いると、ブラウザからビデオ撮影やストリーミング等が行えるようになる。</li>
+          <li>HTML5のでビデオ/オーディオの通信や、データ通信を行うための規格
+          <a target="_blank" href="http://html5experts.jp/mganeko/5098/">WebRTC</a>を用いると、ブラウザ間のテレビ会議等が可能になる。</li>
+          <li>jQueryの<a target="_blank" href="http://jquery.keicode.com/basics/ajax.php">
+          非同期通信(Ajax)と動的Webページ内容の書き換え</a>機能を用いると、ユーザにページのロードや通信が終わるまで待たせることがなく、現在表示ページを順次書き換えていくことができる。
+          </li>
+          <li>jQueryの<a target="_blank" href="http://www.ibm.com/developerworks/jp/web/library/wa-aj-jsonp1/">
+          JSONPデータの通信機能</a>(
+          <a target="_blank" href="http://ja.wikipedia.org/wiki/REST">
+          REST</a>形式の通信)を用いると、複数のサーバと同時に通信することが容易に実現でき、<a target="_blank" href="http://ja.wikipedia.org/wiki/%E3%83%9E%E3%83%83%E3%82%B7%E3%83%A5%E3%82%A2%E3%83%83%E3%83%97_%28Web%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%29">
+          マッシュアップ</a>が実現できる。
+          例えば、<a target="_blank" href="./mashup02b.html">マッシュアップのサンプルプログラム</a>
+          では、外部の２つのサーバのJSONPによるRFSTサービス(Web API)を利用して、熊本県の天気予報と日の出日の入りの時刻を表示している。
+          </li>
+          </ul>
+          等々あり、Webに改革を起こしつつある。
+          <p>
+          </p>
+        </div>
+      </div>
+
+      <div data-role="collapsible" data-collapsed="false" data-theme="b">
+        <h3>実例</h3>
+        <div data-role="collapsible" data-collapsed="false">
+          <h4>HTML5とjQueryを使ったJavaScriptライブラリ</h4>
+          <p>これはほんの一部であるが、HTML5とjQueryを使ったJavaScriptライブラリを紹介する。
+          他によい例を見つけたら、タスク提出時に情報共有のため紹介してほしい。
+          第8回で紹介したjQuery Mobileも代表的なものであるが、ここでは省略するので、第8回を参照してほしい。</p>
+          <ul>
+            <li><a target="_blank" href="http://jqueryui.com/">jQuery
+                UI</a> : <a target="_blank"
+              href="http://ja.wikipedia.org/wiki/JQuery_UI">jQuery
+                UI</a> は、ボタンやチェックボックス等の様々な<a target="_blank"
+              href="http://ja.wikipedia.org/wiki/JQuery_UI"
+              title="jQuery UI">ウィジェット</a>や、ドラッグやリサイズといったマウスによる対話性、アニメーション効果等のエフェクトを与える。
+              これらは、Webアプリケーションの利便性の向上だけでなく、Webコンテンツの可能性も拡げる。
+            <li><a target="_blank" href="http://www.jstree.com/"
+              title="jsTree">jsTree</a> :
+              jsTreeは、ファイルやフォルダー構造の表示等に使われるツリー表示を行うためのライブラリです。 <a
+              target="_blank" href="http://www.jstree.com/demo">デモ</a>
+              にあるように、様々なリスト表示が可能である。
+              <span style="color: #ff0000;">ただ表示するだけではなく、本当に開いたり閉じたりできる。</span>
+            </li>
+            <li><a target="_blank" href="http://www.datatables.net/"
+              title="DataTables">DataTables</a> :
+              DataTablesは、表(table)に関する非常に多機能なライブラリで、<a target="_blank"
+              href="http://www.datatables.net/release-datatables/examples/basic_init/zero_config.html"
+              title="デモページ">デモ</a>
+              にあるように、綺麗な表が作成できるだけではなく、表示行数の変更、カラム毎の並べ替え、検索(抽出)等もできる。<span
+              style="color: #ff0000;">つまり、アプリケーションでしかできなかったようなことが可能になる。</span><br />
+            </li>
+            <li><a target="_blank"
+              href="http://www.flotcharts.org/flot/examples/">Flot Examples</a>
+              : HTML5とjQueryを使ってグラフを描くライブラリ(サンプルページ)。対話性を重視。<br /> <span
+              style="color: #ff0000;"> <a target="_blank"
+                href="http://www.flotcharts.org/flot/examples/zooming/">Selection
+                  and zooming</a>
+                の例の用に、選択範囲やズームもできます。これはイメージの貼り付けでは絶対にできないことで、まるでアプリケーションのようである。
+            </span></li>
+            <li><a target="_blank"
+              href="http://www.chartjs.org/">Chart.js</a>もグラフをプロットするシンプルなライブラリ。
+            </li>
+            <li><a target="_blank"
+              href="http://impress.github.io/impress.js/">impress.js |
+                presentation tool based on HTML5 &amp; CSS3</a> :
+              HTML5,CSS3を用いたプレゼンページ作成用ライブラリ(デモページ)。<br /> <span
+              style="color: #ff0000;">HTML5のグラフィック能力の高さが実感できる。</span><br />
+              <a target="_blank"
+              href="http://cvs.ield.kumamoto-u.ac.jp/wpk/?p=2146">第159回ランチョンセミナー</a>
+              でも紹介した。
+            </li>
+            <li><a target="_blank"
+              href="https://developer.mozilla.org/ja/demos/tag/tech:html5">HTML5
+                のデモ | Demo Studio | MDN</a> : Mozilla Developer
+              Networkで集められているもの。一般的なもので多数あり。</li>
+            <li><a target="_blank" href="http://html5.jalphant.net/">HTML5
+                Demos &amp; Samples</a> : Demoサイト集。</li>
+          </ul>
+        </div>
+        <div data-role="collapsible" data-collapsed="false">
+          <h4>ｅラーニング等への応用例</h4>
+          <p>これはほんの一部であるが、ｅラーニング等への応用例を紹介する。他によい例を見つけたら、タスク提出時に情報共有のため紹介してほしい。</p>
+          <ul>
+            <li>ｅラーニングコンテンツのHTML5対応も進みつつあり、例えば <a target="_blank"
+              href="http://www.adobe.com/jp/products/captivate/features._sl_id-contentfilter_sl_featuredisplaytypes_sl_new.html">
+                Adobe Captivate 7 / 機能</a>を見ると、PowerPointプロジェクトのHTML5への変換、HTML5によるクイズ機能の強化、様々なHTML5アニメーションの埋め込み、HTML5ベースのmラーニングのコンテンツ作成等の機能が挙っている。 <span style="color: #ff0000;">モバイルデバイスでFlashが使えない(iOS)ことがHTML5への移行を押していると思われる。</span>
+            </li>
+            <li><a target="_blank" href="http://alteredqualia.com/canvasmol/">CanvasMol - AlteredQualia</a>
+            は、分子構造の可視化等を行っている例であるが、HTML5の活用により、Webコンテンツが殆どアプリケーションの域に達していることがわかる。</li>
+            <li><a target="_blank" href="http://burakkanber.com/blog/physics-in-javascript-car-suspension-part-1-spring-mass-damper/">
+            Physics in Javascript: Car Suspension – Part 1 </a>は、車のサスペンション(バネの振動)
+            のシミュレーションを含むコンテンツで、HTML5で実現されている。</li>
+            <li><a target="_blank" href="./sample_ui/sample_ui.html">jQuery
+                UIの活用例(ドラッグ＆ドロップを使った穴埋めクイズ)</a><br />
+              ｅラーニングへの活用例として先に紹介した最もよく知られたjQueryプラグインのjQuery
+              UIを用いた簡単な例を作ってみたので紹介する。
+              上記リンクから実際に動作させを見ると、PowerPointプロジェクトのHTML5への変換、HTML5によるクイズ機能の強化、様々なHTML5アニメーションの埋め込み、HTML5ベースのmラーニングのコンテンツ作成等の機能が挙っている。この例では、<ul style="list-style-type: circle;">
+                <li>jQuery UIの <a target="_blank"
+                  href="http://js.studio-kingdom.com/jqueryui/interactions/draggable"
+                  title="Draggable">Draggable</a>と <a target="_blank"
+                  href="http://js.studio-kingdom.com/jqueryui/interactions/droppable"
+                  title="Droppable ">Droppable </a>
+                  によりドラッグ＆ドロップを実現し、穴埋め問題をより人間の感覚に近い形で実現している。(従来はFlashやJava appletの中でしか殆ど無理だった)
+                </li>
+                <li>jQuery UIの <a target="_blank" href="http://js.studio-kingdom.com/jqueryui/widgets/tooltip" title="Tooltip">Tooltip</a>により、ツールチップを実現し、ヒントのON/OFFを可能にしている。(従来の方法ではON/OFFはできない。)
+                </li>
+                <li>jQuery UIの <a target="_blank"
+                  href="http://js.studio-kingdom.com/jqueryui/widgets/dialog"
+                  title="Dialog">Dialog</a>
+                  により、ウインドウ内にサブウインドウを表示している。(従来の方法では別ウインドウになる。)
+                </li>
+              </ul></li>
+            <li>今回は、ソースコードの説明は省略するが非常にシンプルである。
+                従来はJava appletやFlash等プラグインを組み込んででしか出来なかったようなことが、ブラウザだけで可能になってきたことがわかる。
+                また、このファイル <a target="_blank"
+                href="./sample_ui/sample_ui.html.zip" title="zipファイルをちゃんと展開してから開いてください。">sample_ui.html.zip</a>
+                はコンテンツなので、ダウロードしてもローカルPC上でも動作する。
+            </li>
+            <li><a target="_blank" href="rec/local_g2v003sep.html">ディスカッションのまとめ(2011年度後期 1ブロック グループ2)</a>
+              は、本専攻の遠隔教育実践論のWebCT上のディスカッションを、ネットに繋がなくともローカルPC上で読めるように変換したものである。
+              <a target="_blank" href="rec.zip"
+              title="zipファイルをちゃんと展開してから開いてください">rec.zip</a>
+              をダウンロード・展開して、local_g2v003sep.htmlを開いてもブラウザで表示できる。先に紹介した、データ構造のツリー表示のためのプラグイン <a target="_blank"
+              href="http://www.jstree.com/" title="jsTree">jsTree</a>
+              とJavaScriptのデータ形式JSONを利用することで、ディスカッションをツリー表示している。アプリケーションのようにスレッドを動的に開いたり閉じたりできる。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div data-role="collapsible" data-collapsed="false" data-theme="b">
+        <h3>実習</h3>
+        <div data-role="collapsible" data-collapsed="false">
+          <h4>jQuery Mobileを利用した簡単な例</h4>
+          <p>
+            以下に示すHTMLソースは、jQueryとhtml5のライブラリ (この例では<a target="_blank" href="http://www.flotcharts.org/">flot</a>)を利用したインタラクティブでグラフィックを持ちた例である。 <a target="_blank" href="./sampleh5v03.html">sampleh5v03.html</a>(20190323修正:10行目のflotライブラリのロード元のurlの変更に伴う修正)そのもののソースファイルであり、このままでも、ダウンロードしたファイルをWebブラウザで開いても、同様に表示される。
+            jQuery Mobile の用いているので、PC、タブレット、スマートフォンでの表示に、ある程度対応できる。<br />
+            このソースをざっと見てわかると思うが、jQuery Mobileの場合と異なり、JavaScriptの部分が多く、 HTMLの部分が少ない。インタラクティブにイベントを処理し、その結果で計算結果を変更する場合、JavaScriptで書くことが必要な場合が多い。
+          </p>
+          <pre class="prettyprint linenums" id="sample01">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8" /&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+&lt;link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" /&gt;
+&lt;script src="https://code.jquery.com/jquery-1.11.1.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"&gt;&lt;/script&gt;
+&lt;!-- Flotライブラリ https://www.flotcharts.org/ --&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.js"&gt;&lt;/script&gt;
+&lt;title&gt;最小二乗法(jQueryとHTML5を用いたサンプル)&lt;/title&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+// データ数と乱数(0-1)の倍数
+var n = 10, f = 2;
+// html(このファイルの末尾まで)が読み込まれた後で実行されるプロセス
+$(function() {
+  // 初期値でとりあえずグラフをプロット
+    plotGraph();
+  // スライダーでデータの数が指定された時の処理を定義
+  $("#slN").on("slidestop", function( event, ui ) {
+    n = $('#slN').val();
+    plotGraph();
+  });
+  // スライダーで乱数の大きさが指定された時の処理を定義
+  $("#slF").on("slidestop", function( event, ui ) {
+    f = $('#slF').val();
+    plotGraph();
+  });
+});
+// 最小二乗法の計算とグラフのプロット及び係数の表示
+function plotGraph() {
+  var cal = [], fit = [];
+  for(var i = 0; i &lt;= n; i++) {
+      cal.push([i, i + f * Math.random()]);
+  }
+// 最小二乗法によるフィッティング 参考:  http://szksrv.isc.chubu.ac.jp/lms/lms1.html
+  var sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0;
+  for(var i = 0; i &lt;= n; i++) {
+    sum_x += cal[i][0];
+    sum_y += cal[i][1];
+    sum_xy += cal[i][0]*cal[i][1];
+    sum_x2 += cal[i][0]*cal[i][0];
+  }
+  var a = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x * sum_x);
+  var b = (sum_x2 * sum_y - sum_xy * sum_x) / (n * sum_x2 - sum_x * sum_x);
+  for(var i = 0; i &lt;= n; i++) {
+    fit.push([cal[i][0], a * cal[i][0] + b]);
+  }
+  // flotライブラリによるプロット
+  var plot = $.plot("#plotHere", [
+      { data: cal, label: "y = x + f×(0-1の乱数)", points: {show: true}},
+      { data: fit, label: "最小二乗法によるフィッティング", lines: {show: true}}
+      ],
+      {　legend: {position: "nw"}
+  });
+  $("#a").html(a);
+  $("#b").html(b);
+}
+--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div data-role="page"&gt;
+    &lt;div data-role="header"&gt;jQueryとHTML5を用いたサンプル&lt;/div&gt;
+    &lt;p&gt;このコンテンツは、
+    &lt;a target="_blank" href="https://sci-pursuit.com/math/statistics/least-square-method.html"&gt;
+    1次方程式 ( y = ax + b) の最小二乗法&lt;/a&gt;
+    をインタラクティブに試せるものです。以下のスライダーで、データの数と、
+    データをばらつかせる乱数の大きさを変更してみてください。
+    &lt;/p&gt;
+    &lt;form&gt;
+      &lt;div class="ui-field-contain"&gt;
+        &lt;label for="slN"&gt;データの数(5-50)&lt;/label&gt;
+        &lt;input name="slN" id="slN" min="5" max="50" value="10" type="range"&gt;
+      &lt;/div&gt;
+      &lt;div class="ui-field-contain"&gt;
+        &lt;label for="slF"&gt;乱数の大きさ(0-8)&lt;/label&gt;
+        &lt;input name="slF" id="slF" min="0" max="8" value="2" type="range"&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+    &lt;div id="plotHere" style="width: 400px; height: 300px;"&gt;&lt;/div&gt;
+    &lt;p&gt;このグラフの最小二乗法で得られた係数は、&lt;br /&gt;
+    a=&lt;span id="a"&gt;&lt;/span&gt;,&lt;br /&gt;
+    b=&lt;span id="b"&gt;&lt;/span&gt;&lt;br /&gt;です。
+    &lt;/p&gt;
+    &lt;div data-role="footer"&gt;
+      Copyright nakano@cc.kumamoto-u.ac.jp 2014-2019
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+          <ul>
+            <li>2-62行がヘッダ部分で、全体に占める割合が大変大きい。それは、14-59行に渡るJavaScriptが占めているからである。
+            JavaScript以外で、新しいものは、10行目の
+            <a target="_blank" href="http://www.flotcharts.org/">flot</a>
+            ライブラリを読み込んでいるところだけである。</li>
+            <li>JavaScriptに関する詳しい説明は省くが、//で始まるコメント文に各部分の機能を示す。特に、17-20行は、HTMLが全て読み込まれてから実行される。これは、例えば、82行目のグラフを書く場所がまだ指定されていないうちは、グラフをプロットしようにも描く場所がないということになるからである。
+            </li>
+            <li>72-81行目のスライダー２つは、jQuery Mobileのパーツを用いている。このスライダーが使われると、データ数や乱数の大きさが変える必要があり、また、グラフの描き直しも必要になる。このイベントに対応する処理、20-29行めに示している。
+            詳しくは、<a target="_blank" href="http://libro.tuyano.com/index3?id=628001">より高度なGUI部品を使おう！ (1/5)</a>等参照。</li>
+            <li>グラフのプロットは、50-56行で行っているが、
+            <a target="_blank" href="http://www.flotcharts.org/flot/examples/">Flot Examples</a>等を参考にしている。ライブラリをs利用すると、データさえ用意すれば、この程度の記述でグラフが動的にプロットできるのは驚きである。
+            </li>
+            <li>57-58行は、本文の最後に、最小二乗法で計算した係数を表示するのに用いている。このように、jQueryを使えば自分自身のページを動的に書き換えることも可能である。</li>
+          </ul>
+          <div data-role="collapsible" data-collapsed="false">
+            <h4>jQuery及びHTML５のライブラリを利用したモバイルコンテンツの作成</h4>
+            <p>上記の例をもとにしてもよいし、別の例を探したり一から作成してもかまわないが、jQuery Mobileの機能を用いたモバイル対応コンテンツを自分なりに作成してみてください。別の科目で作成したコンテンツでも、HTML以外のコンテンツを元にしても構いませんが、あまり分量が多くなり過ぎないようにしてください。多くとも、今皆さんが読んでいるこのコンテンツより少なくしてください。<br />
+             提出は、前回同様に、自分に管理権限があるコース(○○さんのコース)にファイルツールで登録し、そのリンクをタスク提出用フォーラムに、簡単な解説とともに貼り付けてください。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div data-role="footer" id="FOOTER">
+      お問い合わせ先: <a href="mailto:nakano@cc.kumamoto-u.ac.jp?subject=lis201409">nakano@cc.kumamoto-u.ac.jp</a>
+      2014-2018 Hiroshi Nakano (v2018072200), Kumamoto University
+    </div>
+  </div>
+</body>
+</html>

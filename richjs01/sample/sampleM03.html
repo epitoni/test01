@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&locale=ja"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css" />
+<title>HTML5 Sample program using jQuery, jQuery Mobile, MathJax, Chart.js and dataTables</title>
+<style>
+div.cmt {
+	border: 2px solid #77ff77;
+	border-radius: 6px 6px 6px 6px;
+	padding: 6px 6px 6px 6px;
+	margin: 0px 6px 0px 0px;
+	color: #003300;
+	background-color: #eeffee;
+	font-size: smaller;
+}
+</style>
+<script type="text/javascript">
+// Initialize number of data and magnitude of random number
+let n = 20, f = 2;
+// Process to be done after loading this html
+$(function() {
+	// set n and f to slidor
+	$("#slN").val(n);
+	$("#slN").slider("refresh");
+	$("#slF").val(f);
+	$("#slF").slider("refresh");
+	// plotting graph with initial values
+	plotGraph();
+	// define process triggered by the slider of data number
+	$("#slN").on("slidestop", function( event, ui ) {
+		n = $('#slN').val();
+		plotGraph();
+	});
+  	// define process triggered by the slider of magunitude of random number
+	$("#slF").on("slidestop", function( event, ui ) {
+		f = $('#slF').val();
+		plotGraph();
+	});
+});
+
+// calculation and plot
+function plotGraph() {
+	// (re)calculing x, y data 
+	let cal = [], fit = [], tData = []; // cal, fit: [[x0,y0].[x1,y1],...,[xn,yn]]
+	for(let i = 0; i <= n; i++) {
+		cal.push([i, i + f * (2 * Math.random() - 1)]); // push [xi, yi]
+	}
+// least squares (re)fitting
+	let sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0;
+	for(let i = 0; i <= n; i++) {
+		sum_x += cal[i][0];
+		sum_y += cal[i][1];
+		sum_xy += cal[i][0]*cal[i][1];
+		sum_x2 += cal[i][0]*cal[i][0];
+	}
+	let a = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x * sum_x);
+	let b = (sum_x2 * sum_y - sum_xy * sum_x) / (n * sum_x2 - sum_x * sum_x);
+	for(let i = 0; i <= n; i++) {
+		fit.push([cal[i][0], a * cal[i][0] + b]);
+		tData.push([i+1, cal[i][0], Math.round(1000*cal[i][1])/1000, Math.round(1000*a * cal[i][0] + b)/1000]); // for table
+	}
+// plotting by Chart.js library
+	let cal_o = [], fit_o = [];
+	for(let i = 0; i <= n; i++) {
+		cal_o.push({'x':cal[i][0], 'y':cal[i][1]});
+		fit_o.push({'x':fit[i][0], 'y':fit[i][1]});
+	}
+	let plot = new Chart($("#plotHere"), {
+		type: 'scatter',
+       data: {
+    	   datasets: [{
+            	label: "y = x + R (-"+f+" ≦ R (random number) ≦ "+f+")",
+            	data: cal_o,
+            	radius: 2,
+            	borderColor: 'rgba(255, 0, 0, 1)',
+            	backgroundColor: 'rgba(255, 255, 255, 0)'
+           	},
+            	{
+           	label: 'fitted line',
+           	data: fit_o,
+           	showLine: true,
+           	borderWidth: 1,
+           	fill: false,
+           	radius: 0,
+        		borderColor: 'rgba(0, 0, 255, 1)',
+           	}]
+    	},
+	    options: { responsive: false }
+	});
+// showing data by DataTables Library (rounded off to 3 decimal places)
+	$("#a").html(Math.round(1000*a)/1000);
+	$("#b").html(Math.round(1000*b)/1000);
+  	$("#tbl").dataTable( {
+		destroy: true,
+		data: tData
+  	});
+}
+</script>
+</head>
+<body>
+  <div data-role="page">
+    <div data-role="header">Least Square Fitting Demo Program powered by HTML5 / HTML5 を利用した最小二乗法のデモプログラム</div>
+    <p>
+    <a target="_blank" href="https://jquery.com/">jQuery</a>,
+    <a target="_blank" href="https://jquerymobile.com/">jQuery Mobile</a>,
+    <a target="_blank" href="https://www.mathjax.org/">MathJax</a>,
+    <a target="_blank" href="https://www.chartjs.org/">Chart.js</a>,
+    <a target="_blank" href="https://www.datatables.net/">DataTables</a> of JavaScript libraries
+    are used for bringing out the power of HTML5. (
+    <a target="_blank" href="https://jquery.com/">jQuery</a>,
+    <a target="_blank" href="https://jquerymobile.com/">jQuery Mobile</a>,
+    <a target="_blank" href="https://www.mathjax.org/">MathJax</a>,
+    <a target="_blank" href="https://www.chartjs.org/">Chart.js</a>,
+    <a target="_blank" href="https://www.datatables.net/">DataTables</a>
+    といったJavaScriptライブラリを用いて，HTML5のパワーを引き出しています．)    
+    </p>
+    <hr>
+    
+    <p>
+    This is an interactive sample of
+    <a target="_blank" href="http://www.analyzemath.com/statistics/linear_regression.html">
+    the least squares fitting for linear equation</a>.
+    Please try to change number of data and magnitude of random number by sliders. (
+    これは，
+    <a target="_blank" href="https://ja.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%97%E6%B3%95#%E4%B8%80%E6%AC%A1%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%81%AE%E5%A0%B4%E5%90%88">
+    一次方程式の最小二乗法</a>のインタラクティブなデモです.
+    データの数や乱数成分の大きさをスライダーで変更してみてください．)
+    </p>
+    <p>
+    If fitting curve is \(y = ax + b\), the parameters \(a\) and \(b\) can be obtained for \(n\) data of
+    \((x_1,y_1), (x_2, y_2), \cdots (x_n, y_n)\) by using the least squares fitting.
+    (フィットする一次式が \(y = ax + b\) の場合，係数 \(a\) と \(b\) は， 最小二乗法によると，\(n\)個のデータ
+    \((x_1,y_1), (x_2, y_2), \cdots (x_n, y_n)\) を用いた以下の式で求められます．)
+    \[a = \frac{\displaystyle n\sum_{i=1}^{n}{x_i}{y_i} - \sum_{i=1}^{n}{x_i} \sum_{i=1}^{n}{y_i}}
+    {\displaystyle n\sum_{i=1}^{n}{x_i}^2 - (\sum_{i=1}^{n}{x_i})^2}\]
+    \[b = \frac{\displaystyle \sum_{i=1}^{n}{x_i}^{2}\sum_{i=1}^{n}{y_i} - \sum_{i=1}^{n}{x_i}{y_i}\sum_{i=1}^{n}{x_i}}
+    {\displaystyle n\sum_{i=1}^{n}{x_i}^2 - (\sum_{i=1}^{n}{x_i})^2}\]
+    </p>
+    
+    <div class="cmt">
+    <strong>[MathJax]</strong> Take a look at the source of the above formula. This is \(\TeX\), not image. 
+    Also, try right-clicking on the mouse. It's possible to do this...
+    (上記数式のソースを見てください．なんと\(\TeX\)で，imageではありません．
+    また，マウスの右クリックしてみてください．こんなことできるんですね．)
+    </div>
+    <form>
+      <div class="ui-field-contain">
+        <label for="slN">Number of data (データの数)</label>
+        <input name="slN" id="slN" min="10" max="100" step="10" type="range">
+      </div>
+      <div class="ui-field-contain">
+        <label for="slF">Magnitude of random number (乱数成分の大きさ)</label>
+        <input name="slF" id="slF" min="0" max="10" step="1" type="range">
+      </div>
+    <div class="cmt">
+    <strong>[jQueryMobile]</strong> The above slider is a component of jQueryMobile. 
+    When the value is changed, it is recalculated and re-displayed.
+    (上記スライダーはjQueryMobileの部品を使っています．値を変更すると同時に再計算，再表示されます．)
+    </div>
+    </form>
+
+    <canvas style="display: inline-block" id="plotHere" width="400px" height="300px"></canvas>
+    <p>Obtained parameters (得られた係数): \(a\) = <span id="a"></span>, \(b\) = <span id="b"></span>
+    </p>
+    <div class="cmt">
+    <strong>[Chart.js]</strong> The above graph is drawn dynamically with Chart.js, 
+    which can also be used for data acquisition using the WebAPI.
+    (上記グラフは，Chart.jsで動的に描いています．WebAPIでデータ取得した場合にも使えそうですね．)
+    </div>
+    
+    <h4>Detailed data (詳細なデータ)</h4>
+    <table cellpadding="0" cellspacing="0" border="1" class="display" id="tbl">
+    <thead>
+    <tr>
+    <th>\(i\)</th><th>\(x_i\)</th><th>\(y_i\)</th><th>\(ax_i + b\)</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+    </table>
+    <div class="cmt">
+    <strong>[DataTables]</strong> The above table is drawn dynamically with DataTables. 
+    It has a lot of functions such as number of display, sorting, and search. Try it.
+    (上記表は，DataTablesで動的に描いています．表示数，並べ替え，検索等豊富な機能を持っています．試してみてください．)
+    </div>
+    
+    <div data-role="footer">
+      Copyright nakano@cc.kumamoto-u.ac.jp 2014-2020
+    </div>
+  </div>
+</body>
+</html>

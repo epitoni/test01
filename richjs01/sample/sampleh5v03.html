@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+<!-- Flotライブラリ http://www.flotcharts.org/ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.js"></script>
+<title>最小二乗法(jQueryとHTML5を用いたサンプル)</title>
+<script type="text/javascript">
+<!--
+// データ数と乱数(0-1)の倍数
+var n = 10, f = 2;
+// html(このファイルの末尾まで)が読み込まれた後で実行されるプロセス
+$(function() {
+	// 初期値でとりあえずグラフをプロット
+	  plotGraph();
+	// スライダーでデータの数が指定された時の処理を定義
+  $("#slN").on("slidestop", function( event, ui ) {
+	  n = $('#slN').val();
+	  plotGraph();
+	});
+  // スライダーで乱数の大きさが指定された時の処理を定義
+	$("#slF").on("slidestop", function( event, ui ) {
+		f = $('#slF').val();
+		plotGraph();
+	});
+});
+// 最小二乗法の計算とグラフのプロット及び係数の表示
+function plotGraph() {
+	var cal = [], fit = [];
+	for(var i = 0; i <= n; i++) {
+		  cal.push([i, i + f * Math.random()]);
+	}
+// 最小二乗法によるフィッティング 参考:	http://szksrv.isc.chubu.ac.jp/lms/lms1.html
+	var sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0;
+	for(var i = 0; i <= n; i++) {
+	  sum_x += cal[i][0];
+	  sum_y += cal[i][1];
+		sum_xy += cal[i][0]*cal[i][1];
+	  sum_x2 += cal[i][0]*cal[i][0];
+	}
+	var a = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x * sum_x);
+	var b = (sum_x2 * sum_y - sum_xy * sum_x) / (n * sum_x2 - sum_x * sum_x);
+	for(var i = 0; i <= n; i++) {
+		fit.push([cal[i][0], a * cal[i][0] + b]);
+	}
+	// flotライブラリによるプロット
+	var plot = $.plot("#plotHere", [
+      { data: cal, label: "y = x + f×(0-1の乱数)", points: {show: true}},
+      { data: fit, label: "最小二乗法によるフィッティング", lines: {show: true}}
+      ],
+      {　legend: {position: "nw"}
+	});
+	$("#a").html(a);
+  $("#b").html(b);
+}
+-->
+</script>
+</head>
+<body>
+  <div data-role="page">
+    <div data-role="header">jQueryとHTML5を用いたサンプル</div>
+    <p>このコンテンツは、
+    <a target="_blank" href="https://sci-pursuit.com/math/statistics/least-square-method.html">
+    1次方程式 ( y = ax + b) の最小二乗法</a>
+    をインタラクティブに試せるものです。以下のスライダーで、データの数と、
+    データをばらつかせる乱数の大きさを変更してみてください。
+    </p>
+    <form>
+      <div class="ui-field-contain">
+        <label for="slN">データの数(5-50)</label>
+        <input name="slN" id="slN" min="5" max="50" value="10" type="range">
+      </div>
+      <div class="ui-field-contain">
+        <label for="slF">乱数の大きさ(0-8)</label>
+        <input name="slF" id="slF" min="0" max="8" value="2" type="range">
+      </div>
+    </form>
+    <div id="plotHere" style="width: 400px; height: 300px;"></div>
+    <p>このグラフの最小二乗法で得られた係数は、<br />
+    a=<span id="a"></span>,<br />
+    b=<span id="b"></span><br />です。
+    </p>
+    <div data-role="footer">
+      Copyright nakano@cc.kumamoto-u.ac.jp 2014-2019
+    </div>
+  </div>
+</body>
+</html>

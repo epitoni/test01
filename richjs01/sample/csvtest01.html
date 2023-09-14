@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css" />
+<title>csv test</title>
+<script type="text/javascript">
+$(function() {
+//	$("#tbl").DataTable({"ajax": './csvtest01.csv'});
+	$("#hdr").load('./csvtest01.csv'); // fileだとCORSで不可＝＞サーバにしないとダメ
+//	$("#tbl").DataTable().fread("csvtest01.csv")
+});
+</script>
+</head>
+<body>
+<header id="hdr"></header>
+	<div data-role="page">
+		<div data-role="header">
+			CSVのテスト	
+		</div>
+		<table id="tbl">
+		</table>
+		<div data-role="footer">ver. 2021-06-10, Copyright nakano@cc.kumamoto-u.ac.jp 2021-2021</div>
+	</div>
+</body>
+</html>

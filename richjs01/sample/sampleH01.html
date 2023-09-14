@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- ver.2018-06-07 by nakano@cc.kumamoto-u.ac.jp -->
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<!-- Flot (library for plot using HTML5 and jQuery) http://www.flotcharts.org/ -->
+<script src="./jquery.flot.js"></script>
+<title>Sample program for jQuery, jQuery Mobile and HTML5</title>
+<script type="text/javascript">
+<!--
+// Initialize number of data and magnitude of random number
+// (データ数と乱数の倍数の初期値設定)
+var n = 20, f = 2;
+// Process to be done after loading this html
+// (html(このファイルの末尾まで)読み込み後に実行されるプロセス)
+$(function() {
+	// set n and f to slidor (n, f をスライダにセット)
+	$("#slN").val(n);
+	$("#slN").slider("refresh");
+	$("#slF").val(f);
+	$("#slF").slider("refresh");
+	// plotting graph with initial values
+	// (初期値でとりあえずグラフをプロット)
+	  plotGraph();
+	// define process triggered by the slider of data number
+	// (スライダでデータの数が指定された時の処理を定義)
+  $("#slN").on("slidestop", function( event, ui ) {
+	  n = $('#slN').val();
+	  plotGraph();
+	});
+  // define process triggered by the slider of magunitude of random number
+  // (スライダで乱数の大きさが指定された時の処理を定義)
+	$("#slF").on("slidestop", function( event, ui ) {
+		f = $('#slF').val();
+		plotGraph();
+	});
+});
+// calculation and redrawing graph and parameters
+// (最小二乗法の計算とグラフのプロット及び係数の表示)
+function plotGraph() {
+	var cal = [], fit = [];
+	for(var i = 0; i <= n; i++) {
+		  cal.push([i, i + f * Math.random()]);
+	}
+// least squares fitting
+// (最小二乗法によるフィッティング)
+	var sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0;
+	for(var i = 0; i <= n; i++) {
+	  sum_x += cal[i][0];
+	  sum_y += cal[i][1];
+		sum_xy += cal[i][0]*cal[i][1];
+	  sum_x2 += cal[i][0]*cal[i][0];
+	}
+	var a = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x * sum_x);
+	var b = (sum_x2 * sum_y - sum_xy * sum_x) / (n * sum_x2 - sum_x * sum_x);
+	for(var i = 0; i <= n; i++) {
+		fit.push([cal[i][0], a * cal[i][0] + b]);
+	}
+// plotting by flot library
+// (flotライブラリによるプロット)
+	var plot = $.plot("#plotHere", [
+      { data: cal, label: "y = x + R (0 ≦ R (random number) ≦ "+f+")", points: {show: true}},
+      { data: fit, label: "Fitting line (フィッティングした直線)", lines: {show: true}}
+      ],
+      {　legend: {position: "nw"}
+	});
+// showing fitting parameters rounded off to 3 decimal places
+// (小数点以下3桁までで四捨五入したフィッティング係数)
+	$("#a").html(Math.round(1000*a)/1000);
+  $("#b").html(Math.round(1000*b)/1000);
+}
+-->
+</script>
+</head>
+<body>
+  <div data-role="page">
+    <div data-role="header">Sample program for jQuery, jQuery Mobile and HTML5<br />
+    (jQuery, jQuery MobileとHTML5を用いたサンプル)</div>
+    <p>
+    This is an interactive sample of
+    <a target="_blank" href="http://www.analyzemath.com/statistics/linear_regression.html">
+    the least squares fitting for linear equation (y = ax + b)</a>.
+    Please try to change number of data and magnitude of random number by sliders.<br />
+    (このコンテンツは、
+    <a target="_blank" href="http://hooktail.sub.jp/computPhys/least-square/">
+    1次方程式 ( y = ax + b) の最小二乗法</a>
+    をインタラクティブに試せるものです。以下のスライダーで、データの数と、
+    データをばらつかせる乱数の大きさを変更してみてください。)
+    </p>
+    <form>
+      <div class="ui-field-contain">
+        <label for="slN">Number of data (データの数)</label>
+        <input name="slN" id="slN" min="10" max="100" step="10" type="range">
+      </div>
+      <div class="ui-field-contain">
+        <label for="slF">Magnitude of random number (乱数の大きさ)</label>
+        <input name="slF" id="slF" min="0" max="10" step="1" type="range">
+      </div>
+    </form>
+    <div id="plotHere" style="width: 400px; height: 300px;"></div>
+    <p>Obtained parameters (得られた係数): a=<span id="a"></span>, b=<span id="b"></span>
+    </p>
+    <div data-role="footer">
+      Copyright nakano@cc.kumamoto-u.ac.jp 2014-2016
+    </div>
+  </div>
+</body>
+</html>

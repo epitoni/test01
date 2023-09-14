@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>var test</title>
+</head>
+<body>
+<div id="test"></div>
+<script type="text/javascript">
+let x = 3;
+var y = 5;
+console.log(this);
+console.log(this.x, this.y);
+console.log(x, y);
+
+const test = {
+			x: 9,
+		  func: function() {
+			  let x = 8;
+		    return this.x;
+		  },
+		};
+
+console.log(test.func());
+
+</script>
+</body>
+</html>

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>jQuery and HTML5</title>
+<link rel="stylesheet"
+	href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+<script
+	src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script
+	src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+<script lang="javascript">
+$(document).on("pagecreate", function() {
+	$(".photopopup").on({
+		popupbeforeposition : function() {
+			var maxHeight = $(window).height() - 60 + "px";
+			$(".photopopup img").css("max-height", maxHeight);
+		}
+	});
+});
+$(function() {
+});
+</script>
+<style type="text/css">
+<!--
+li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
+	list-style-type: decimal !important
+}
+
+.custom-corners .ui-bar {
+	-webkit-border-top-left-radius: inherit;
+	border-top-left-radius: inherit;
+	-webkit-border-top-right-radius: inherit;
+	border-top-right-radius: inherit;
+}
+
+.custom-corners .ui-body {
+	border-top-width: 0;
+	-webkit-border-bottom-left-radius: inherit;
+	border-bottom-left-radius: inherit;
+	-webkit-border-bottom-right-radius: inherit;
+	border-bottom-right-radius: inherit;
+}
+-->
+</style>
+</head>
+<body">
+	<div data-role="page">
+		<div data-role="header" id="HEADER">
+			<s>jQuery and</s> HTML5
+		</div>
+		<div role="main" class="ui-content">
+			<div class="ui-corner-all custom-corners">
+				<div class="ui-bar ui-bar-a">
+					<h3>Summary / あらまし</h3>
+				</div>
+				<div class="ui-body ui-body-a">
+					<p>
+						<a target="_blank" href="https://en.wikipedia.org/wiki/HTML5">HTML5</a>, 
+						an HTML standard that supports multimedia such as graphics, 
+						<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Introduction">WebAPI</a>, 
+						a mechanism for APIs on the Web, 
+						and JavaScript libraries that simplify usage or realizing higher functions are 
+						the major sources of rich Web applications such as 
+						<a target="_blank" href="https://en.wikipedia.org/wiki/Single-page_application">SPA</a>. 
+						In other words, it is the underlying technology for applications that run in a web browser, 
+						such as word processing and spreadsheets on Google Drive. 
+						In this section, we will introduce various JavaScript libraries developed based on HTML5 and jQuery, 
+						which are indispensable for developing rich applications on the Web. 
+					</p>
+					<p>
+						グラフィックス等マルチメディアをサポートしたHTMLの規格
+						<a target="_blank" href="https://ja.wikipedia.org/wiki/HTML5">HTML5</a>、
+						Web上でのAPIの仕組み
+						<a target="_blank" href="https://developer.mozilla.org/ja/docs/Learn/JavaScript/Client-side_web_APIs/Introduction">WebAPI</a>、
+						それらの操作を簡単にしたり高い機能を実現した各種ライブラリは、
+						<a target="_blank" href="https://ja.wikipedia.org/wiki/%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3">SPA</a>
+						等のリッチなWebアプリケーションの大きな源流といってよいだろう。
+						すなわち、Googleドライブ上のワープロや表計算に代表されるような、Webブラウザ上で動作するアプリケーションの基盤技術である。
+						ここでは、HTML5の基に開発された様々なJavaScriptライブラリを紹介するが、
+						それらはWeb上のリッチなアプリケーション開発になくてはならないものである。
+					</p>
+				</div>
+			</div>
+
+			<div data-role="collapsible" data-collapsed="false" data-theme="b">
+				<h3>Explanation / 解説</h3>
+
+				<div data-role="collapsible" data-collapsed="false">
+					<h4>HTML5</h4>
+					<p>
+						HTML5 is a major update of the HTML standard, and it has brought
+						about a major change in Web content, as it became possible to
+						handle graphics and videos that could not be handled directly in
+						the browser. HTML5 is a standard for HTML itself, a plug-in like
+						Flash is not required. 
+						As Steve Jobs's comment on Apple's site on April, 2010</a>, Apple has
+						stopped using Flash on iOS. A detailed description of the process
+						can be found in <a target="_blank"
+							href="https://techcrunch.com/2012/06/30/steve-jobs-war-against-flash/">
+							Steve Would Be Proud: How Apple Won The War Against Flash
+							(2012-06-30)</a>. TechCrunch's commentary on a series of processes by
+						Ryan Lawler, "Proud of Jobs: Until Apple Wins the Battle with
+						Flash" (June 2012). Even Adobe, the developer of Flash, announced
+						at their web site (June 29, 2012) that it will stop supporting
+						FlashPlayer on Android 4.1 and later. Adobe finally announced that
+						<a target="_blank"
+							href="https://theblog.adobe.com/adobe-flash-update/"> Flash
+							update and distribution will be terminated by the end of 2020
+							(July 2017)</a>.
+					</p>
+					<p>
+						HTML5は、HTML規格の大幅な更新であり、これまでブラウザ上で直接は扱えなかったグラフィックスや
+						動画等が扱えるようになりWebコンテンツに大きな変革をもたらしたといえよう。
+						HTML5はHTML自体の規格なので、Flashのようなプラグインが必要ない。 
+						ジョブズによるFlashについての見解 (2010年4月)にあるように、AppleはiOSでFlashの採用をやめた。 
+						経緯な詳細は、 
+						<a target="_blank" href="https://jp.techcrunch.com/2012/07/02/20120630steve-jobs-war-against-flash/">
+							TechCrunchによる一連の経緯の解説 Ryan Lawler「ジョブズの誇り：AppleがFlashとの戦いに勝つまで」(2012年6月)</a>にある。
+						Flashの開発元のAdobeさえも
+						<a target="_blank" href="https://www.adobe.com/jp/aboutadobe/pressroom/pressreleases/20120629_flashplayer_android.html">
+							同社のWebサイトでの発表(2012年6月)</a>
+						で、Android 4.1以降でのFlashPlayerのサポートを中止するとしている。
+						また、 <a target="_blank" href="https://theblog.adobe.com/adobe-flash-update/">
+						2020年の年末をもってFlashのアップデート及び配布を終了する(2017年7月)</a> と発表した。
+					</p>
+				</div>
+
+				<div data-role="collapsible" data-collapsed="false">
+					<h4><s>jQuery and JavaScript libraries using jQuery /
+						jQueryとそれを利用したJavaScriptライブラリ</s></h4>
+					<p>
+						<div style="color:red;">
+						jQuery has been considered the de facto standard library for asynchronous communication and DOM manipulation.
+						In fact, it is still widely used (e.g., The Most Popular JavaScript Libraries in 
+					<a target="_blank" href="https://kinsta.com/blog/javascript-libraries">The 40 Best JavaScript Libraries and Frameworks for 2022</a>
+						). 
+						However, due to the increasing functionality of JavaScript itself etc., 
+						some people are concerned about its future (
+					<a target="_blank" href="https://www.arroyolabs.com/2019/03/the-future-of-jquery/">The future of jQuery</a>,
+					<a target="_blank" href="https://jquerymobile.com/">jQuery Mobile is no longer supported</a>,
+					<a target="_blank" href="https://webstyle.work/isjqueryowakon/">【2022年5月現在】jQueryはオワコン？勉強の必要性や将来性についてまとめてみた</a>,
+					<a target="_blank" href="https://www.publickey1.jp/blog/21/jquery_uijquery_mobilejquery.html">jQuery UIとjQuery Mobileがついに開発終了</a>,
+						). 
+						Therefore, we have removed jQuery from the contents and sample programs in this issue (2022-06-03). 
+						</div>
+					
+					<s>
+						<a target="_blank" href="https://en.wikipedia.org/wiki/JQuery">jQuery</a>
+						is a popular JavaScript library that support <a target="_blank"
+							href="https://en.wikipedia.org/wiki/Ajax">Ajax</a>, event
+						processing, dynamic rewriting its own HTML. Many JavaScript
+						libraries (jQuery plug-ins) enhancing jQuery's functions have been
+						developed. It made possible to include rich functions into web
+						contents as stand-alone applications, and enhance client's
+						processing capacity on web browsers.<br /> As shown on the top
+						tabs of the <a target="_blank" href="https://jquery.com">homepage</a>,
+						jQuery's plug-ins are not only as <a target="_blank"
+							href="https://jqueryui.com/">jQuery UI</a>, <a target="_blank"
+							href="https://jquerymobile.com">jQuery Mobile</a> (these are
+						developed by themselves), but also as many in <a target="_blank"
+							href="https://plugins.jquery.com/">The jQuery Plugin Registry</a>.
+						You can search there using keywords (Now moved to <a
+							target="_blank"
+							href="https://www.npmjs.com/search?q=keywords:jquery-plugin">npm</a>
+						), e.g. <a target="_blank"
+							href="https://www.npmjs.com/search?q=keywords%3Aplot">plot</a> or
+						<a target="_blank"
+							href="https://www.npmjs.com/search?q=keywords%3Achart">chart</a>.
+						There are more and more plug-ins which are not registered. In the
+						next section, let me introduce some plug-ins.
+						</s>
+					</p>
+					<p>
+					<div style="color:red;">
+					jQueryは、非同期通信やDOM操作等、デファクトスタンダードなライブラリだと目されてきました。
+					実際現在も大変多く使われています(例えば、
+					<a target="_blank" href="https://kinsta.com/blog/javascript-libraries">The 40 Best JavaScript Libraries and Frameworks for 2022</a>
+					で、The Most Popular JavaScript Libraries)。
+					しかし、JavaScript自体の高機能化等から、将来を危ぶむ声もあります(
+					<a target="_blank" href="https://www.arroyolabs.com/2019/03/the-future-of-jquery/">The future of jQuery</a>,
+					<a target="_blank" href="https://jquerymobile.com/">jQuery Mobile is no longer supported</a>,
+					<a target="_blank" href="https://webstyle.work/isjqueryowakon/">【2022年5月現在】jQueryはオワコン？勉強の必要性や将来性についてまとめてみた</a>,
+					<a target="_blank" href="https://www.publickey1.jp/blog/21/jquery_uijquery_mobilejquery.html">jQuery UIとjQuery Mobileがついに開発終了</a>,
+					)。
+					そこで、今回の内容やサンプルプログラムからjQueryを外しました(2022-06-03)。
+					</div>
+					<s>
+						<a target="_blank" href="https://ja.wikipedia.org/wiki/JQuery">jQuery</a>
+						は、 <a target="_blank" href="https://ja.wikipedia.org/wiki/Ajax">Ajax</a>、
+						イベント処理、動的なHTMLの書き換え等をサポートするJavaScriptライブラリである。
+						また、その機能を拡張する多くのJavaScriptライブラリ(jQueryプラグイン)が開発されており、
+						Webアプリケーションのブラウザ(クライアント)側での処理能力を飛躍的に進展させるとともに、
+						Webコンテンツに関しても今まではアプリケーションでしかできなかったような様々なリッチな機能を入れ込むことが可能になってきた。<br />
+						jQueryのプラグインは、 <a target="_blank" href="https://jquery.com">jQueryのホームページ</a>のトップのタブにあるように、
+						内部で同時に開発されている <a target="_blank" href="https://jqueryui.com/">jQuery
+							UI</a>や <a target="_blank" href="https://jquerymobile.com">jQuery
+							Mobile</a> 以外にも、 jQueryの公式サイトにある <a target="_blank"
+							href="https://plugins.jquery.com/">プラグイン登録サイト</a> (現在は <a
+							target="_blank"
+							href="https://www.npmjs.com/search?q=keywords:jquery-plugin">npm</a>
+						に移行)に多数が登録されている。 ここでキーワードで検索することができ、例えば、 グラフのプロット「<a
+							target="_blank"
+							href="https://www.npmjs.com/search?q=keywords%3Aplot">plot</a>
+						(又は<a target="_blank"
+							href="https://www.npmjs.com/search?q=keywords%3Achart">chart</a>)」
+						等で検索することができる。 さらに、このサイトに登録されていないものでも、よく使われているものが多数ある。
+						次節の「実例」で、HTML5やjQueryを用いたライブラリをいくつか紹介する。
+						</s>
+					</p>
+				</div>
+
+				<div data-role="collapsible" data-collapsed="false">
+					<h4>Another important aspects of HTML5 / HTML5の他の重要な側面</h4>
+					<p>Here, HTML5  introduced mainly as application
+						for web contents. There are other things as followings.</p>
+					<p>今回は、HTML5のコンテンツへの活用としての側面に関して扱った。 しかし、今回扱っていない内容として、
+					</p>
+					<ul>
+						<li>HTML5's <a target="_blank"
+							href="https://www.w3schools.com/html/html5_geolocation.asp">
+								Geolocation API</a> can get current location of mobile device.<br />
+							HTML5の位置情報機能の<a target="_blank"
+							href="http://www.htmq.com/geolocation/"> Geolocation API</a>を用いると、モバイルデバイス等の現在位置等を取得できる。
+						</li>
+						<li>By using HTML5's <a target="_blank"
+							href="https://www.w3schools.com/html/html5_video.asp">
+								Playing Videos in HTML</a>, movies can be played on web browser
+							without any plug-ins or helper applications. You need attentions
+							for supported few video format.<br /> HTML5の<a target="_blank"
+							href="http://www.htmq.com/html5/004.shtml">動画再生機能</a>
+							を用いると、Webブラウザだけで動画の再生が可能になる。ただし、再生可能な動画形式が限られているので 注意が必要である。
+						</li>
+						<li>By using HTML5's camera control functions <a
+							target="_blank"
+							href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API">
+								MediaStream Recording</a> and <a target="_blank"
+							href="https://developer.mozilla.org/en-US/docs/Web/API/Media_Streams_API">
+								Media Capture and Streams</a>, Video recording and streaming will be
+							possible.<br /> HTML5のカメラ制御機能の
+							<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API"> MediaStream Recording</a>
+							や
+							<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Media_Streams_API">Media Capture and Streams</a>
+							を用いると、ブラウザからビデオ撮影やストリーミング等が行えるようになる。
+						</li>
+						<li><a target="_blank" href="https://webrtc.org/?hl=en">WebRTC</a>
+							is a APIs for HTML5 and provides browsers and mobile applications
+							with Real-Time Communications capabilities, e.g. TV conference
+							between browsers.<br /> HTML5のでビデオ/オーディオの通信や、データ通信を行うための規格 <a
+							target="_blank" href="https://html5experts.jp/mganeko/5098/">
+								WebRTC</a>を用いると、ブラウザ間のテレビ会議等が可能になる。</li>
+								<!-- 
+						<li><a target="_blank"
+							href="https://www.w3schools.com/jquery/ajax_ajax.asp"> Ajax</a>
+							method of HTML5 can update its own web page asynchronously
+							without waiting data-loading.<br /> jQueryの<a target="_blank"
+							href="http://www.webdesignleaves.com/pr/jquery/jq_basic_06.html">
+								非同期通信(Ajax)と動的Webページ内容の書き換え</a>
+							機能を用いると、ユーザにページのロードや通信が終わるまで待たせることがなく、 現在表示ページを順次書き換えていくことができる。</li>
+							 -->
+					</ul>
+				</div>
+			</div>
+
+			<div data-role="collapsible" data-collapsed="false" data-theme="b">
+				<h3>ライブラリの実例 / The actual Examples of Libraries</h3>
+				<div data-role="collapsible" data-collapsed="false">
+					<h4>
+						JavaScript libraries using HTML5<br />HTML5を活用したJavaScriptライブラリ
+					</h4>
+					<p>Let me introduce very few example of JavaScript libraries
+						using HTML5</p>
+					<p>これはほんの一部であるが、HTML5を使ったJavaScriptライブラリを紹介する。</p>
+					<ul>
+						<li><s>
+							<a target="_blank" href="https://jqueryui.com/">jQuery
+								UI</a> : <br /> <a target="_blank"
+							href="https://en.wikipedia.org/wiki/JQuery_UI">jQuery UI</a>
+							realizes various types of <a target="_blank"
+							href="https://en.wikipedia.org/wiki/Widget_(GUI)">widgets</a>
+							(e.g. button, checkbox), interactive functions (e.g.
+							drag-and-drop), various effect (e.g. animation). It improve not
+							only usability of web application, but also possibility for
+							various applications. As a personal opinion, with the spread of
+							mobile devices, <span style="color: #ff0000;">I think that
+								jQuery UI is no longer needed, and jQuery Mobile is enough.</span> <br />
+							<a target="_blank" href="https://ja.wikipedia.org/wiki/JQuery_UI">jQuery
+								UI</a> は、ボタンやチェックボックス等の様々な <a target="_blank"
+							href="https://ja.wikipedia.org/wiki/%E3%82%A6%E3%82%A3%E3%82%B8%E3%82%A7%E3%83%83%E3%83%88_(GUI)">ウィジェット</a>
+							や、ドラッグやリサイズといったマウスによる対話性、アニメーション効果等のエフェクトを与える。
+							これらは、Webアプリケーションの利便性の向上だけでなく、Webコンテンツの可能性も拡げる。 <span
+							style="color: #ff0000;">個人的な意見であるが、モバイルデバイスの普及に伴い、 jQuery
+								UIはもはや必要なく、jQuery Mobileだけでよいのではないかと思う。</span>
+								</s>
+						<li><s>
+							<a target="_blank" href="https://jquerymobile.com/">jQueryMobile</a>
+							: <br />
+							<a target="_blank" href="https://en.wikipedia.org/wiki/JQuery_Mobile">jQuery Mobile</a> is a
+							HTML5-based user interface system designed to make <a
+							target="_blank"
+							href="https://en.wikipedia.org/wiki/Responsive_web_design">responsive</a>
+							web sites and apps that are accessible on all smartphone, tablet
+							and desktop devices. It might be introduces later. One of similar
+							libraries is <a target="_blank" href="https://getbootstrap.com/">Bootstrap</a>.
+							<br />
+							<a target="_blank" href="https://ja.wikipedia.org/wiki/JQuery_Mobile">jQuery Mobile</a>は、HTML5ベースのGUIで、
+							<a target="_blank"
+							href="https://ja.wikipedia.org/wiki/%E3%83%AC%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B7%E3%83%96%E3%82%A6%E3%82%A7%E3%83%96%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3">レスポンシブ</a>
+							なWebサイトやWebアプリを実現するためのものです。 スマホ、タブレット、デスクトップ全てに対応しようとするものです。
+							後で紹介することになると思います。 同様のライブラリとして、 <a target="_blank"
+							href="https://getbootstrap.com/">Bootstrap</a> があります。</li>
+							</s>
+						<li>
+							<a target="_blank" href="https://getbootstrap.com/">Bootstrap</a>: <br />
+							It supports 
+							<a target="_blank" href="https://en.wikipedia.org/wiki/Responsive_web_design">Responsive web design</a>
+							and is useful for building device-independent web front-end UIs. 
+							Often used to migrate from jQueryMobile, but not very compatible (personal opinion).<br />
+							<a target="_blank" href="https://ja.wikipedia.org/wiki/%E3%83%AC%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B7%E3%83%96%E3%82%A6%E3%82%A7%E3%83%96%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3">レスポンシブウェブデザイン</a>
+							に対応し、デバイスに関わらないWebのフロントエンドのUIの構築に役立つ。
+							jQueryMobileからの移行に使われることも多いが、あまり互換性はない(個人的な見解)。							
+						</li>
+						<div style="color:red;">
+						The following jsTree library depends on jQuery.
+						I have not found a good tree treatment library that does not depend on jQuery.
+						Please let me know if you find one.<br />
+						以下のjsTreeはjQueryに依存します。
+						tree系のライブラリでjQueryに依存しないよいものを発見できませんでした。
+						見つけたら教えてください。
+						</div>
+						<s>
+						<li><a target="_blank" href="https://www.jstree.com/">jsTree</a>
+							: <br /> jsTree is a library for showing tree structure as file,
+							folder etc. As <a target="_blank"
+							href="https://www.jstree.com/demo">demonstration</a>, it can make
+							various type of trees, <span style="color: #ff0000;"> and
+								not only showing, but also it works as opening, closing etc.</span><br />
+							jsTreeは、ファイルやフォルダー構造の表示等に使われるツリー表示を行うためのライブラリです。 <a
+							target="_blank" href="https://www.jstree.com/demo">デモ</a>
+							にあるように、様々なリスト表示が可能である。 <span style="color: #ff0000;">ただ表示するだけではなく、本当に開いたり閉じたりできる。</span>
+							</s>
+						</li>
+						<li>
+							<div style="color:red;">depending jQuery / jQuery依存</div>
+							<s>
+							<a target="_blank" href="https://www.datatables.net/"
+							title="ホーム">DataTables</a> : <br /> DataTables is a quite rich
+							library for tables, and <a target="_blank"
+							href="https://www.datatables.net/examples/basic_init/zero_configuration.html">demo</a>
+							shows that it can make not only beautiful tables, but also
+							changing number of visible rows, sorting by columns, finding
+							(extracting) by keywords, etc. <span style="color: #ff0000;">It
+								therefore realize functions only by desktop applications before.</span><br />
+							DataTablesは、表(table)に関する非常に多機能なライブラリで、 <a target="_blank"
+							href="https://www.datatables.net/examples/basic_init/zero_configuration.html"
+							title="デモページ">デモ</a>
+							にあるように、綺麗な表が作成できるだけではなく、表示行数の変更、カラム毎の並べ替え、検索(抽出)等もできる。 <span
+							style="color: #ff0000;">つまり、アプリケーションでしかできなかったようなことが可能になる。</span>
+							</s>
+						</li>
+						<li>
+							<a target="_blank" href="https://gridjs.io/">Grid.js</a>: <br />
+							It is a jQuery-independent, highly functional table creation library that makes it easy to create tables 
+							with search, sorting, paging, and more.<br />
+							jQueryに依存しない、非常に高機能な表作成ライブラリで、検索、ソート、ページング等を備えた表が簡単に作成できます。
+						</li>
+						<li>
+							<div style="color:red;">depending jQuery / jQuery依存</div>
+							<s>
+							<a target="_blank"
+							href="https://www.flotcharts.org/flot/examples/">Flot
+								Examples</a> : <br /> Flot is a library for plotting graphs by
+							using HTML5 and jQuery, with high interactivity. <span
+							style="color: #ff0000;"> <a target="_blank"
+								href="https://www.flotcharts.org/flot/examples/zooming/">As
+									demo of selection and zooming</a>, it is not possible by pasting
+								image files. Just as a desktop application.
+						</span><br /> HTML5とjQueryを使ってグラフを描くライブラリ(サンプルページ)。対話性を重視。<br /> <span
+							style="color: #ff0000;"> <a target="_blank"
+								href="https://www.flotcharts.org/flot/examples/zooming/">Selection
+									and zooming</a> の例の用に、選択範囲やズームもできます。これはイメージの貼り付けでは絶対にできないことで、
+								まるでアプリケーションのようである。
+						</span>
+						</s>
+						</li>
+						<li><a target="_blank" href="https://www.chartjs.org/">Chart.js</a>:<br />
+							This is also simple library for plotting chart.<br />
+							これもグラフをプロットするシンプルなライブラリ。
+						</li>
+						<li>
+								<a target="_blank" href="https://d3js.org/">D3.js</a>: <br />
+								A powerful library that also handles SVG and excels at data visualization and animation. 
+								<a target="_blank" href="https://observablehq.com/@d3/gallery">The examples</a> 
+								show its wide range of applications.<br />
+								SVGも扱え、データの可視化やアニメーションが得意な強力なライブラリ。
+								<a target="_blank" href="https://observablehq.com/@d3/gallery">例</a>
+								を見ると、その応用範囲の広さがわかる。
+						</li>
+						<li>
+							<a target="_blank" href="https://openbase.com/js/tinymce">TinyMCE</a>: <br />
+							Add WYSIWYG editor functionality on web pages.
+							It is built into many systems, such as Wordpress and Moodle, 
+							and shows that the editing was actually done on the browser side.<br />
+							Webページ上にWYSIWYGエディターの機能を追加する。
+							WordpressやMoodle等、多くのシステムに組み込まれていて、実はブラウザ側で編集していたことがわかる。
+						</li>
+						<li><a target="_blank"
+							href="https://impress.github.io/impress.js/#/bored">impress.js
+								| presentation tool based on HTML5 & CSS3</a> : <br /> A library
+							for making presentation page using HTML5 and CSS3. <span
+							style="color: #ff0000;">Graphic of HTML5 can be felt.</span><br />
+							HTML5,CSS3を用いたプレゼンページ作成用ライブラリ(デモページ)。<br /> <span
+							style="color: #ff0000;">HTML5のグラフィック能力の高さが実感できる。</span></li>
+						<li><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/Demos_of_open_web_technologies">
+						HTML5 DEMO | Demo Studio | MDN</a> : Many demos.<br />
+							<a target="_blank" href="https://developer.mozilla.org/ja/docs/Web/Demos_of_open_web_technologies">
+							HTML5 DEMO | Demo Studio | MDN</a>	多数あり。</li>
+						<!-- <li><a target="_blank" href="http://html5.jalphant.net/">HTML5
+                Demos & Samples</a> : <br />
+                Demo site collection.<br />
+                Demoサイト集。</li> -->
+					</ul>
+				</div>
+				<div data-role="collapsible" data-collapsed="false">
+					<h4>Examples for e-learning (ｅラーニング等への応用例)</h4>
+					<p>
+						There are few examples to apply HTML5 for e-learning. When you
+						find good examples, please tell me for sharing information.<br />
+						これはほんの一部であるが、ｅラーニング等への応用例を紹介する。他によい例を見つけたら、情報共有のため紹介してほしい。
+					</p>
+					<ul>
+						<li>(Commercial) <a target="_blank"
+							href="https://www.adobe.com/products/captivate/features.html">:
+								Adobe Captivate </a> <a target="_blank"
+							href="https://www.adobe.com/jp/products/captivate/features.html">(in
+								Japanese)</a> <br /> HTML5 ready e-learning contents are developed
+							recently, this example shows functions to convert from PowerPoint
+							to HTML5, enhancing Quiz, animations. <span
+							style="color: #ff0000;">Mobile and HTML5 publishing are
+								supported because of Flash problems.</span> <br />
+							ｅラーニングコンテンツのHTML5対応も進みつつあり、この例を見ると、PowerPointプロジェクトのHTML5への変換、
+							HTML5によるクイズ機能の強化、様々なHTML5アニメーションの埋め込み、
+							HTML5ベースのmラーニングのコンテンツ作成等の機能が挙っている。 <span style="color: #ff0000;">モバイルデバイスでFlashが使えない(iOS)ことがHTML5への移行を押していると思われる。</span>
+						</li>
+						<li><a target="_blank"
+							href="https://alteredqualia.com/canvasmol/">CanvasMol -
+								AlteredQualia</a> : <br /> Visualizing the molecular structures in
+							3D, it is almost as a desktop application.<br />
+							は、分子構造の可視化等を行っている例であるが、
+							HTML5の活用により、Webコンテンツが殆どアプリケーションの域に達していることがわかる。</li>
+						<li><a target="_blank"
+							href="https://burakkanber.com/blog/physics-in-javascript-car-suspension-part-1-spring-mass-damper/">
+								Physics in Javascript: Car Suspension – Part 1 </a>: <br /> It gave
+							a simulation of car suspension system realized by HTML5.<br />
+							は、車のサスペンション(バネの振動) のシミュレーションを含むコンテンツで、HTML5で実現されている。</li>
+					</ul>
+				</div>
+			</div>
+
+			<div data-role="collapsible" data-collapsed="false" data-theme="b">
+				<h3>Sample Program / サンプルプログラム</h3>
+				<div data-role="collapsible" data-collapsed="false">
+					<h4>
+						Sample program using rich JavaScript libraries for
+						bringing out the power of HTML5.<br />
+						HTML5の力を引き出すためにJavaScriptライブラリをを利用した簡単な例
+					</h4>
+					<p>
+						<ul>
+						<li>
+						<a target="_blank" href="./sample/richjs02.html">richjs02.html</a>
+						with <a target="_blank" href="./sample/js/richjs02.js">js/richjs02.js</a>
+						(one file version: <a target="_blank" href="./sample/richjs02All.html">richjs02All.html</a>)
+						<br />
+						<a target="_blank" href="./sample/richjs02.html">richjs02.html</a>、
+						<a target="_blank" href="./sample/js/richjs02.js">js/richjs02.js</a>
+						(one file version: <a target="_blank" href="./sample/richjs02All.html">richjs02All.html</a>)
+						</li>
+						<li>
+						This example shows that, by combining a variety of useful JavaScript libraries, 
+						it is relatively easy to create an application that runs in a Web browser.<br />
+						この例が示すように、様々な有用なJavaScriptライブラリを組み合わせることで、
+						Webブラウザ上で動作するアプリケーションが比較的容易に作成できる。
+						</li>
+						</ul>
+					</p>
+					<p>
+						<div style="color:red;">
+						Below is a sample from last year that relies heavily on jQuery, but is posted for comparison.<br />
+						以下は、昨年の、jQueryに大きく依存したサンプルですが、比較のために掲示しておきます。
+						</div>
+						<ul>
+						<li>
+						<s>
+						<a target="_blank" href="./sample/richjs01.html">richjs01.html</a>
+						with <a target="_blank" href="./sample/js/richjs01.js">js/richjs01.js</a>
+						and <a target="_blank" href="./sample/css/richjs01.css">css/richjs01.css</a><br />
+						<a target="_blank" href="./sample/richjs01.html">richjs01.html</a>、
+						<a target="_blank" href="./sample/js/richjs01.js">js/richjs01.js</a>、
+						<a target="_blank" href="./sample/css/richjs01.css">css/richjs01.css</a>
+						</s>
+						</li>
+						</ul>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div>Well, changes were very difficult this time. / いやー、今回の変更は大変だった。</div>
+		<div data-role="footer" id="FOOTER">
+			Contect (お問い合わせ先): <a
+				href="mailto:nakano@cc.kumamoto-u.ac.jp?subject=cae202206">nakano@cc.kumamoto-u.ac.jp</a>
+			2015-2022 Hiroshi Nakano (v20220602 since 2014051900), Kumamoto
+			University
+		</div>
+	</div>
+</body>
+</html>

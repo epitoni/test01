@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<title>HTML5 and its enhanced JavaScript libraries / HTML5とそれによって強化されたJavaScriptライブラリ</title>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+<style type="text/css">
+.prettyprint ol.linenums > li { list-style-type: decimal;}
+pre.prettyprint {
+  word-break: break-all;
+  word-wrap:normal;
+  overflow-x: auto;
+  white-space: pre;
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <div class="navbar-brand">
+        <strong>
+        HTML5 and its enhanced JavaScript libraries / HTML5とそれによって強化されたJavaScriptライブラリ
+        </strong>
+      </div>
+    </div>
+  </div>
+</header>
+
+<blockquote class="text-end">
+	This content is ready for mobile device by <a target="_blank" href="https://getbootstrap.com/">Bootstrap</a>.
+</blockquote>
+
+<div class="accordion">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="achGoal">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#acdGoal" aria-expanded="true" aria-controls="acdGoal">
+      	Goal / ゴール
+      </button>
+    </h2>
+    <div id="acdGoal" class="accordion-collapse collapse show" aria-labelledby="achGoal">
+      <div class="accordion-body">
+      	The goal is to understand what has changed with the advent of HTML5 and 
+      	the many JavaScript libraries that have been developed to take advantage of its functionality, 
+      	and to be able to practically implement them.
+      	<br />-<br />
+      	HTML5の出現でなにが変わったか，またその機能を便利に活用するために開発された多くのJavaScriptライブラリがあることについて理解し，
+      	実際に利用できるようになることを目指す．
+      </div>
+    </div>
+	</div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="achIntro">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#acdIntro" aria-expanded="true" aria-controls="acdIntro">
+      	Explanation / 解説
+      </button>
+    </h2>
+    <div id="acdIntro" class="accordion-collapse collapse show" aria-labelledby="achIntro">
+      <div class="accordion-body">
+      
+      	<ul>
+      		<li>
+						<a target="_blank" href="https://en.wikipedia.org/wiki/HTML5">HTML5</a>, 
+						an HTML standard that supports multimedia such as graphics, 
+						<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Introduction">WebAPI</a>, 
+						a mechanism for APIs on the Web, 
+						and JavaScript libraries that simplify usage or realizing higher functions are 
+						the major sources of rich Web applications such as 
+						<a target="_blank" href="https://en.wikipedia.org/wiki/Single-page_application">SPA</a>. 
+						In other words, it is the underlying technology for applications that run in a web browser, 
+						such as word processing and spreadsheets on Google Drive. 
+						In this section, we will introduce various JavaScript libraries developed based on HTML5 and jQuery, 
+						which are indispensable for developing rich applications on the Web. 
+						<br />-<br />
+						グラフィックス等マルチメディアをサポートしたHTMLの規格
+						<a target="_blank" href="https://ja.wikipedia.org/wiki/HTML5">HTML5</a>、
+						Web上でのAPIの仕組み
+						<a target="_blank" href="https://developer.mozilla.org/ja/docs/Learn/JavaScript/Client-side_web_APIs/Introduction">WebAPI</a>、
+						それらの操作を簡単にしたり高い機能を実現した各種ライブラリは、
+						<a target="_blank" href="https://ja.wikipedia.org/wiki/%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3">SPA</a>
+						等のリッチなWebアプリケーションの大きな源流といってよいだろう。
+						すなわち、Googleドライブ上のワープロや表計算に代表されるような、Webブラウザ上で動作するアプリケーションの基盤技術である。
+						ここでは、HTML5の基に開発された様々なJavaScriptライブラリを紹介するが、
+						それらはWeb上のリッチなアプリケーション開発になくてはならないものである。
+					</li>
+      	</ul>
+      
+      	<div class="accordion-item">
+    			<h3 class="accordion-header" id="expl01">
+      			<button class="accordion-button" type="button" data-bs-toggle="collapse" 
+      			data-bs-target="expl01" aria-expanded="true" aria-controls="expl01">
+      				HTML5
+     				</button>
+   				</h3>
+    			<div id="expl01" class="accordion-collapse collapse show" aria-labelledby="expl01">
+     				<div class="accordion-body">
+     					<ul>
+ 	    					<li>
+		     					HTML5 is a major update of the HTML standard, and has revolutionized Web content by enabling
+		     					the handling of graphics, video, etc. that could not be handled directly on a Web browser 
+		     					before HTML5. 
+		     					Before HTML5, it was common to use Adobe's FLASH plug-in to handle graphics. 
+		     					Thanks to the contributions of Steve Jobs and others, this is no longer necessary. 
+		     					For more details, see 
+		     					<a target="_blank" href="https://techcrunch.com/2012/06/30/steve-jobs-war-against-flash/">
+									Steve Would Be Proud: How Apple Won The War Against Flash (2012-06-30)</a>, etc. 
+		     					Adobe, the developer of Flash, announced (in July 2017) that it will stop updating 
+		     					and distributing Flash at the end of 2020.
+									<br />-<br />
+									HTML5は、HTML規格の大幅な更新であり，それまでWebブラウザ上で直接は扱えなかったグラフィックスや動画等が
+									扱えるようになりWebコンテンツに大きな変革をもたらしたといえよう．
+									HTML5以前は，Adobe社のFLASHプラグインを入れることでグラフィックス等を扱うのが一般的であった．
+									スティーブジョブス等の貢献もあり，現在はそのような必要がなくなった．
+									経緯な詳細は，
+		     					<a target="_blank" href="https://techcrunch.com/2012/06/30/steve-jobs-war-against-flash/">
+									「ジョブズの誇り：AppleがFlashとの戦いに勝つまで」(2012年6月)</a>等にある．
+									Flashの開発元のAdobeは，2020年の年末をもってFlashのアップデート及び配布を終了する(2017年7月) と発表した．
+									<br /><br />
+								</li>
+     					</ul>
+      			</div>
+   				</div>
+				</div>
+
+      
+      	<div class="accordion-item">
+    			<h3 class="accordion-header" id="achJson">
+      			<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#acdJson" aria-expanded="true" aria-controls="acdJson">
+      				jQuery
+     				</button>
+   				</h3>
+    			<div id="acdJson" class="accordion-collapse collapse show" aria-labelledby="achJson">
+     				<div class="accordion-body">
+     					<ul>
+								<li>
+									jQuery has been recognized as the de facto standard library for asynchronous communication, 
+									DOM manipulation, and more.
+									In fact, it is still widely used today.
+									For example, it is listed as The Most Popular JavaScript Libraries in 
+									<a target="_blank" href="https://kinsta.com/blog/javascript-libraries">
+									The 40 Best JavaScript Libraries and Frameworks for 2023</a>.
+									<br />-<br />
+									jQueryは，非同期通信やDOM操作等．デファクトスタンダードなライブラリだと目されてきました．
+								 	実際現在も大変多く使われています．
+								 	例えば，
+									<a target="_blank" href="https://kinsta.com/blog/javascript-libraries">
+									The 40 Best JavaScript Libraries and Frameworks for 2023</a>
+								 	で，The Most Popular JavaScript Librariesになっています．
+									<br /><br />
+								</li>
+								<li>
+									However, with the arrival of HTML5 and the enhanced functionality of JavaScript itself, 
+									some are doubtful about its future (
+									<a target="_blank" href="https://www.arroyolabs.com/2019/03/the-future-of-jquery/">The future of jQuery</a>,
+									<a target="_blank" href="https://jquerymobile.com/">jQuery Mobile is no longer supported</a>,
+									<a target="_blank" href="https://realtoughcandy.com/is-jquery-dead/">"Is jQuery dead in 2023?</a>). 
+									<br />-<br />
+									しかし，HTML5の出現とJavaScript自体の高機能化等から，将来を危ぶむ声もあります (
+									<a target="_blank" href="https://www.arroyolabs.com/2019/03/the-future-of-jquery/">The future of jQuery</a>,
+									<a target="_blank" href="https://jquerymobile.com/">jQuery Mobile is no longer supported</a>,
+									<a target="_blank" href="https://webstyle.work/isjqueryowakon/">【2022年5月現在】jQueryはオワコン？勉強の必要性や将来性についてまとめてみた</a>,
+									<a target="_blank" href="https://www.publickey1.jp/blog/21/jquery_uijquery_mobilejquery.html">jQuery UIとjQuery Mobileがついに開発終了</a>,
+									)． 
+									<br /><br />
+								</li>
+								<li>
+									Therefore, in this course, I started to remove jQuery from the contents and sample programs in FY2022.
+									Work is continuing on this in FY2023, but please let me know if I have forgotten to remove it.
+									<br />-<br />
+									そこで，本講義では，2022年度から，内容やサンプルプログラムからjQueryを外し始めました．
+									2023年度も作業を継続していますが，消し忘れがあったらご連絡ください．
+								</li>
+							</ul>
+
+      			</div>
+   				</div>
+				</div>
+
+      	<div class="accordion-item">
+    			<h3 class="accordion-header" id="achJson">
+      			<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#acdJson" aria-expanded="true" aria-controls="acdJson">
+      				Another important aspects of HTML5 / HTML5の他の重要な側面
+     				</button>
+   				</h3>
+    			<div id="acdJson" class="accordion-collapse collapse show" aria-labelledby="achJson">
+     				<div class="accordion-body">
+							<ul>
+								<li>
+									In this issue, we have dealt with the aspect of using HTML5 for contents. 
+									However,
+									<br />-<br />
+									今回は，HTML5のコンテンツへの活用としての側面に関して扱った．しかし，今回扱っていない内容として，
+									<br /><br />
+									<ul>
+										<li>
+											HTML5's 
+											<a target="_blank" href="https://www.w3schools.com/html/html5_geolocation.asp">Geolocation API</a> 
+											can get current location of mobile device.
+											<br />-<br />
+											HTML5の位置情報機能の<a target="_blank"
+											href="http://www.htmq.com/geolocation/"> Geolocation API</a>を用いると、モバイルデバイス等の現在位置等を取得できる。
+											<br /><br />
+										</li>
+										<li>
+											By using HTML5's 
+											<a target="_blank" href="https://www.w3schools.com/html/html5_video.asp">Playing Videos in HTML</a>, 
+											movies can be played on web browser without any plug-ins or helper applications. 
+											You need attentions for supported few video format. 
+											<br />-<br />
+											HTML5の
+											<a target="_blank" href="http://www.htmq.com/html5/004.shtml">動画再生機能</a>
+											を用いると、Webブラウザだけで動画の再生が可能になる。
+											ただし、再生可能な動画形式が限られているので 注意が必要である。
+											<br /><br />
+										</li>
+										<li>
+											By using HTML5's camera control functions
+											<a target="_blank" 
+											href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API">
+											MediaStream Recording</a> and 
+											<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Media_Streams_API">
+											Media Capture and Streams</a>, 
+											Video recording and streaming will be possible.
+											<br />-<br />
+											HTML5のカメラ制御機能の
+											<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API">
+											MediaStream Recording</a>
+											や
+											<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Media_Streams_API">
+											Media Capture and Streams</a>
+											を用いると、ブラウザからビデオ撮影やストリーミング等が行えるようになる。
+											<br /><br />
+										</li>
+										<li>
+											<a target="_blank" href="https://webrtc.org/?hl=en">WebRTC</a>
+											is a APIs for HTML5 and provides browsers and mobile applications
+											with Real-Time Communications capabilities, e.g. TV conference
+											between browsers.
+											<br />-<br />
+											HTML5のでビデオ/オーディオの通信や、データ通信を行うための規格
+											<a target="_blank" href="https://html5experts.jp/mganeko/5098/">WebRTC</a>
+											を用いると、ブラウザ間のテレビ会議等が可能になる。</li>
+											<br />
+										</li>
+									</ul>
+									are not covered in this article.
+									<br />-<br />
+									等が挙げられる．
+								</li>
+							</ul>
+      			</div>
+   				</div>
+				</div>
+
+
+      </div>
+    </div>
+	</div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="rLibs">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse"
+       data-bs-target="#rLibs" aria-expanded="true" aria-controls="rLibs">
+      		Examples of libraries / ライブラリの実例
+      </button>
+    </h2>
+    <div id="rLibs" class="accordion-collapse collapse show" aria-labelledby="rLibs">
+      <div class="accordion-body">
+      
+      	<div class="accordion-item">
+    			<h4 class="accordion-header" id="rLib01">
+      			<button class="accordion-button" type="button" data-bs-toggle="collapse" 
+      			data-bs-target="rLib01" aria-expanded="true" aria-controls="rLib01">
+      				JavaScript libraries using HTML5
+      				<br />
+      				HTML5を活用したJavaScriptライブラリ
+     				</button>
+   				</h3>
+    			<div id="rLib01" class="accordion-collapse collapse show" aria-labelledby="rLib01">
+     				<div class="accordion-body">
+			      	<p>
+			      		These are just a few examples of useful JavaScript libraries using HTML5.
+			      		The library introduced here is so-called Vanilla.js, which does not depend on 
+			      		other JavaScript libraries (jQuery, etc.).
+			      		jQuery, jQueryMobile, jQuery UI, jsTree, DataTables, and FlotExamples were removed from FY2023.
+			      		<br />-<br />
+			      		これらはほんの一例ですが，HTML5を使用した便利なJavaScriptライブラリを紹介します．
+			      		ここで紹介するライブラリは，いわゆるVanilla.jsと呼ばれる他のJavaScriptライブラリ(jQuery等)に依存しないものです．
+			      		2023年度から，jQuery, jQueryMobile, jQuery UI, jsTree, DataTables, FlotExamplesを外しました．
+			     		</p>
+							<ul>
+								<li>
+									<b><a target="_blank" href="https://getbootstrap.com/">Bootstrap</a>:</b> 
+									<br />
+									It supports 
+									<a target="_blank" href="https://en.wikipedia.org/wiki/Responsive_web_design">Responsive web design</a>
+									and is useful for building a device-independent web front-end UI.
+									It is often used to migrate from jQueryMobile, but may not be compatible with jQueryMobile 
+									(personal opinion).
+									<br />
+									<a target="_blank" href="https://ja.wikipedia.org/wiki/%E3%83%AC%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B7%E3%83%96%E3%82%A6%E3%82%A7%E3%83%96%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3">レスポンシブウェブデザイン</a>
+									に対応し、デバイスに関わらないWebのフロントエンドのUIの構築に役立つ．
+									jQueryMobileからの移行に使われることも多いが，まり互換性はないかもしれません(個人的な見解)．						
+								</li>
+								<li>
+									<b><a target="_blank" href="https://gridjs.io/">Grid.js</a>: </b>
+									<br />
+									It is a very high-performance tabular library that makes it easy to create tables 
+									with search, sorting, paging, etc.
+									(It depends on jQuery, but a well-known high-performance one called DataTables is available.)
+									<br />
+									非常に高機能な表作成ライブラリで、検索、ソート、ページング等を備えた表が簡単に作成できます。
+									(jQueryに依存しますが，DataTablesという高機能なものが有名です)
+								</li>
+								<li>
+									<b><a target="_blank" href="https://www.chartjs.org/">Chart.js</a>:</b>
+									<br />
+									A feature-rich, easy-to-use library for plotting a variety of graphs.
+									<br />
+									様々なグラフをプロットするための高機能で使いやすいライブラリ．
+								</li>
+								<li>
+									<b><a target="_blank" href="https://d3js.org/">D3.js</a>: </b>
+									<br />
+									A powerful library that also handles SVG and excels at data visualization and animation. 
+									<a target="_blank" href="https://observablehq.com/@d3/gallery">The examples</a> 
+									show its wide range of applications.
+									<br />
+									SVGも扱え、データの可視化やアニメーションが得意な強力なライブラリ。
+									<a target="_blank" href="https://observablehq.com/@d3/gallery">例</a>
+									を見ると、その応用範囲の広さがわかる。
+								</li>
+								<li>
+									<b><a target="_blank" href="https://openbase.com/js/tinymce">TinyMCE</a>: </b>
+									<br />
+									Add WYSIWYG editor functionality on web pages.
+									It is built into many systems, such as Wordpress and Moodle, 
+									and shows that the editing was actually done on the browser side.
+									<br />
+									Webページ上にWYSIWYGエディターの機能を追加する。
+									WordpressやMoodle等、多くのシステムに組み込まれていて、実はブラウザ側で編集していたことがわかる。
+								</li>
+								<li>
+									<b><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/Demos"></b>
+									Demos of open web technologies</a> : Many demos.
+									<br />
+									Many demos. / デモ多数．
+								</li>
+								<li>
+									There is another useful tree structure display that depends on jQuery called 
+									<a target="_blank" href="https://www.jstree.com/">jsTree</a>, 
+									but I haven't found a good one that doesn't depend on jQuery. 
+									If you have any information, please let me know.
+									<br />
+									その他，ツリー構造を表示するものとしてjQueryに依存するものとしては
+									<a target="_blank" href="https://www.jstree.com/">jsTree</a>
+									という有用なものがあるが，私はjQueryリに依存しないよいものを見つけていません．なにか情報を持っていたら教えてください．
+								</li>
+							</ul>
+      			</div>
+   				</div>
+				</div>
+      
+        	<div class="accordion-item">
+    			<h4 class="accordion-header" id="rLib02">
+      			<button class="accordion-button" type="button" data-bs-toggle="collapse" 
+      			data-bs-target="rLib02" aria-expanded="true" aria-controls="rLib02">
+      				Example of application to e-learning, etc.
+      				<br />
+      				ｅラーニング等への応用例
+     				</button>
+   				</h3>
+    			<div id="rLib01" class="accordion-collapse collapse show" aria-labelledby="rLib01">
+     				<div class="accordion-body">
+			      	<p>
+			      		TThese are just a few examples of applications to e-learning, etc. 
+			      		If you find other good examples, please share them with us for information sharing.
+			      		<br />-<br />
+			      		これはほんの一部であるが，ｅラーニング等への応用例を紹介する．他によい例を見つけたら，情報共有のため紹介してほしい．
+			     		</p>
+							<ul>
+								<li>
+									<b>(Commercial) 
+									<a target="_blank" href="https://www.adobe.com/products/captivate/features.html">
+									Adobe Captivate </a> 
+									(<a target="_blank" href="https://www.adobe.com/jp/products/captivate/features.html">
+									in Japanese</a>) :</b>
+									<br />
+									HTML5 ready e-learning contents are developed recently, 
+									this example shows functions to convert from PowerPoint to HTML5, enhancing Quiz, animations.
+									Mobile and HTML5 publishing are supported because of Flash problems.
+									<br />
+									ｅラーニングコンテンツのHTML5対応も進みつつあり、この例を見ると、PowerPointプロジェクトのHTML5への変換、
+									HTML5によるクイズ機能の強化、様々なHTML5アニメーションの埋め込み、HTML5ベースのmラーニングのコンテンツ作成等の
+									機能が挙っている。 
+									モバイルデバイスでFlashが使えない(iOS)ことがHTML5への移行を押していると思われる。
+								</li>
+								<li>
+									<b><a target="_blank" href="https://alteredqualia.com/canvasmol/">CanvasMol -
+									AlteredQualia</a> :</b> 
+									<br />
+									Visualizing the molecular structures in 3D, it is almost as a desktop application.
+									<br />
+									分子構造の可視化等を行っている例であるが、
+									HTML5の活用により、Webコンテンツが殆どアプリケーションの域に達していることがわかる。
+								</li>
+								<li>
+									<b><a target="_blank" href="https://burakkanber.com/blog/physics-in-javascript-car-suspension-part-1-spring-mass-damper/">
+									Physics in Javascript: Car Suspension – Part 1 </a>: </b>
+									<br />
+									It gave a simulation of car suspension system realized by HTML5.
+									<br />
+									車のサスペンション(バネの振動) のシミュレーションを含むコンテンツで、HTML5で実現されている。
+								</li>
+								<li>
+									<b><a target="_blank" href="https://brm.io/matter-js/">Matter.js</a>: </b>
+									<br>
+									An engine that can be used to simulate 2D physical motion.
+									<br>
+									物理的な運動のシミュレーションに使えそうなライブラリ．
+								</li>
+								<li>
+									<b><a target="_blank" href="https://www.labxchange.org/">
+									world's science classroom / 世界の理科教室</a>: </b>
+									<br>
+									There are a number of simulations created in JavaScript.
+									<br>
+									JavaScriptで作成されたシミュレーションも多数入っている．
+								</li>
+							</ul>
+      			</div>
+   				</div>
+				</div>
+      
+      </div>
+    </div>
+	</div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="achSample">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#acdSample" aria-expanded="true" aria-controls="acdSample">
+      	Sample Program / サンプルプログラム
+      </button>
+    </h2>
+    <div id="acdSample" class="accordion-collapse collapse show" aria-labelledby="achSample">
+      <div class="accordion-body">
+      	<ul>
+      		<li>
+      			Here is a simple example of using a JavaScript library to bring out the power of HTML5.
+      			<br />
+						ここで紹介するのは，HTML5の力を引き出すためにJavaScriptライブラリをを利用した簡単な例です．
+      		</li>
+      		<li>
+						The following samples are simply html and JavaScript files.
+						The html file works as is when clicked. To save the file, right-click on it and save it.
+						<br />
+						以下のサンプルは単なるhtmlとJavaScriptファイルです．
+						htmlファイルは，クリックするとそのまま動作します．保存する場合は右クリックで保存してください．
+						<ul>
+							<li><a target="_blank" href="./sample/richjs02.html">richjs02.html</a> 
+							(<a target="_blank" href="./sample/js/richjs02.js">./jsrichjs02.js</a> JS file loaded in HTML)</li>
+						</ul>
+						<br />
+					</li>
+					<li>
+						This file can not only be opened directly, but can also be opened locally in a saved file. 
+						(Of course, JavaScript files should also be saved in the "js" holder in the folder 
+						where the html file is saved.)
+						<br />-<br />
+						このファイルは直接開けるだけではなく，保存したファイルをローカルに開くこともできます．
+						(もちろんJavaScriptファイルもhtmlファイルを保存したフォルダに「js」ホルダーを作ってその中に保存してください)
+						<br /><br />
+					</li>
+					<li>
+						In actuality, the following four libraries are used.
+						<br />
+						実際には，以下の４つのライブラリを使用しています．
+						<ul>
+							<li>
+								<a target="_blank" href="https://getbootstrap.com/">Bootstrap</a> :
+								Responsive support / レスポンシブ対応
+							</li>
+							<li>
+								<a target="_blank" href="https://www.mathjax.org/">MathJax</a> :
+								Formula Handling / 数式の取り扱い
+							</li>
+							<li>
+								<a target="_blank" href="https://www.chartjs.org/">Chart.js</a> :
+								Plotting Graphs / グラフのプロット
+							</li>
+							<li>
+								<a target="_blank" href="https://gridjs.io/">Grid.js</a> : 
+								Interactive Table / インタラクティブな表
+						</ul>
+					</li>
+					<li>
+						For more information, check the behavior of different sliders, look at the html and js sources, 
+						or visit the home page of the respective library.
+						<br />
+						詳しくは，スライダを変えて動作チェックをしたり，html及びjsファイルをみたり，各々のライブラリのホームページを見てください．
+					</li>
+				</ul>
+      </div>
+    </div>
+	</div>
+
+</div>
+
+ <footer class="d-flex flex-wrap justify-content-between align-items-center">
+			<div>お問い合わせ先: <a href="mailto:nakano@cc.kumamoto-u.ac.jp?subject=cae20230601">
+			nakano@cc.kumamoto-u.ac.jp</a></div>
+			<div>2019-2023 Hiroshi Nakano (v20230601 since 20210601), Kumamoto University</div>
+ </footer>
+</body>
+</html>
